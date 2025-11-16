@@ -8,12 +8,15 @@ AddType application/wasm .wasm
 
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_URI} !^/$
+RewriteCond %{REQUEST_URI} !^/index\.html$
 RewriteRule ^ - [L]
 
 RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
 RewriteRule ^robots\.txt$ dist/robots.txt [L]
 RewriteRule ^resume\.pdf$ dist/resume.pdf [L]
 RewriteRule ^placeholder\.svg$ dist/placeholder.svg [L]
+RewriteRule ^index\.html$ dist/index.html [QSA,L]
 RewriteRule ^$ dist/index.html [QSA,L]
 RewriteRule ^(?!assets/).* dist/index.html [QSA,L]
 
