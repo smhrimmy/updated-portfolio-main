@@ -16,3 +16,15 @@ RewriteRule ^resume\.pdf$ dist/resume.pdf [L]
 RewriteRule ^placeholder\.svg$ dist/placeholder.svg [L]
 RewriteRule ^$ dist/index.html [QSA,L]
 RewriteRule ^(?!assets/).* dist/index.html [QSA,L]
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|mjs)$">
+    Header set Content-Type "application/javascript"
+  </FilesMatch>
+  <FilesMatch "\.css$">
+    Header set Content-Type "text/css"
+  </FilesMatch>
+  <FilesMatch "\.wasm$">
+    Header set Content-Type "application/wasm"
+  </FilesMatch>
+</IfModule>
