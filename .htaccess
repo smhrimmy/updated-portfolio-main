@@ -1,0 +1,18 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+AddType application/javascript .js
+AddType text/css .css
+AddType application/wasm .wasm
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
+RewriteRule ^robots\.txt$ dist/robots.txt [L]
+RewriteRule ^resume\.pdf$ dist/resume.pdf [L]
+RewriteRule ^placeholder\.svg$ dist/placeholder.svg [L]
+RewriteRule ^$ dist/index.html [QSA,L]
+RewriteRule ^(?!assets/).* dist/index.html [QSA,L]
